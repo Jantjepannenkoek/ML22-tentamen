@@ -2,11 +2,11 @@
 name = "tentamen"
 version = "0.1.0"
 description = ""
-authors = ["Raoul Grouls <raoul.grouls@businessdecision.nl>"]
+authors = ["Dennis Hagen <dennis.hagen@student.hu.nl>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "3.10.9"
+python = "3.9.12"
 torch = {version = "*"}
 pydantic = "^1.10.4"
 loguru = "^0.6.0"
