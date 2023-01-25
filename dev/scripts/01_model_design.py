@@ -18,7 +18,7 @@ if __name__ == "__main__":
 
     configs = [
         LinearConfig(
-            input=13, output=20, tunedir=presets.logdir, h1=100, h2=10, dropout=0.5
+            input=13, output=20, tunedir=presets.logdir, h1=100, h2=50, dropout=0.1
         ),
     ]
 
