@@ -22,8 +22,8 @@ if __name__ == "__main__":
             output=20,
             tunedir=presets.logdir,
             hidden_size=64,
-            dropout=0.2,
-            num_layers=4,
+            dropout=0.5,
+            num_layers=3,
         ),
     ]
 
