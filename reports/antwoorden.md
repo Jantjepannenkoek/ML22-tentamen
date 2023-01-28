@@ -215,7 +215,14 @@ Dit is de architectuur die ik op voorhand bedacht had in de voorgaande vraag.
 * Num_layers = 3
 
 Hieronder volgen de uitkomsten van het eerste experiment.
-![](Tentamen%20ML22/Experiment%201.png)
+<figure>
+  <p align = "center">
+    <img src="img/Experiment 1.png" style="width:100%">
+    <figcaption align="center">
+      <b> Fig 2. Resultaten 1e experiment.</b>
+    </figcaption>
+  </p>
+</figure>
 
 Het experiment is ingezet met 50 epochs. Uit de data blijkt dat na 20 epochs het model bijna op z’n top getraind is (0.96 accuracy). De grafiek van test- en trainset blijven geleidelijk aflopen. Er is daardoor geen sprake van overfitting. Dit betekent dat de dropout niet hoger gezet hoeft te worden.
 
@@ -226,7 +233,14 @@ In het 2e experiment heb ik de dropout toch hoger gezet, omdat dit de initiële 
 * Dropout = 0.5
 * Num_layers = 3
 
-![](Tentamen%20ML22/Experiment%202.png)
+<figure>
+  <p align = "center">
+    <img src="img/Experiment 2.png" style="width:100%">
+    <figcaption align="center">
+      <b> Fig 3. Resultaten 1e experiment.</b>
+    </figcaption>
+  </p>
+</figure>
 
 Met deze instellingen gebeurt er iets bijzonders op het eind en lijkt voornamelijk impact te hebben op de testset. Ik vind het lastig om te verklaren waarom dit gebeurt, maar het zou te maken kunnen hebben dat er dusdanig veel informatie is verloren, dat er een grote foutmarge is. Er is ook een drop in accuracy zichtbaar. Op de top was accuracy 93 en daarmee minder accuraat dan een dropout van 0.2.
 
@@ -237,7 +251,14 @@ Hogere *hidden_size* betekent meer informatie. Ook heb ik het aantal layers verg
 * Dropout = 0.5
 * Num_layers = 5
 
-![](Tentamen%20ML22/Experiment%203.png)
+<figure>
+  <p align = "center">
+    <img src="img/Experiment 3.png" style="width:100%">
+    <figcaption align="center">
+      <b> Fig 4. Resultaten 1e experiment.</b>
+    </figcaption>
+  </p>
+</figure>
 
 Afgaande op deze grafieken is de lijn grilliger dan bij het eerste experiment. De trainset gaat lekker en blijft smooth, terwijl de grafiek op de testset grillig is en af en toe ook naar boven schiet. Dit kan erop duiden dat het model kwetsbaar is voor overfitting. Wellicht dat een hogere dropout hier uitkomst kan bieden. De accuracy was tevens 0.96, vergelijkbaar met het eerste experiment.
 
@@ -280,11 +301,35 @@ Als eerst heb ik een searchspace aangemaakt voor mijn GRU-model. Met de architec
 
 Hieronder de resultaten van de eerste hypertune.
 
-![](Tentamen%20ML22/63E02EE5-24D2-43CB-ADB2-B8EF09101871.png)
+<figure>
+  <p align = "center">
+    <img src="img/Hparams_V1.0.png" style="width:100%">
+    <figcaption align="center">
+      <b> Fig 5. Plot 1e hypertune.</b>
+    </figcaption>
+  </p>
+</figure>
 
-![](Tentamen%20ML22/DDF93EF8-E8A3-428C-8BD0-53AC0896F54C.png)
+<figure>
+  <p align = "center">
+    <img src="img/Results_v1.0.png" style="width:100%">
+    <figcaption align="center">
+      <b> Fig 6. Resultaten parameters 1e hypertune.</b>
+    </figcaption>
+  </p>
+</figure>
 
-![](Tentamen%20ML22/A686FB88-2124-4849-B3C2-91231BA04B19.png)
+<figure>
+  <p align = "center">
+    <img src="img/Loss_v1.0.png" style="width:100%">
+    <figcaption align="center">
+      <b> Fig 7. Resultaten loss 1e hypertune.</b>
+    </figcaption>
+  </p>
+</figure>
+
+
+
 
 Een accuracy van 94% is nog niet de 96% van de handmatige tuning, dus er is nog ruimte voor verbetering. Interessant uit deze uitkomst is dat de *hidden_size* (238) groter is dan de handmatige tuning en het aantal *layers* kleiner (2). De *loss* ziet er goed uit voor de test- en trainset en vertoont geen tekenen van overfitting. Kortom een goede basis om een gerichter experiment uit te voeren. Met name de *batchsize* is erg groot (80, 600) voor deze dataset. *Batchsize* wordt verkleind en het aantal epochs wordt opgeschaald naar 50.
 
@@ -296,14 +341,35 @@ In navolging op het voorgaande experiment zijn de ranges in de *searchspace* ver
 * Dropout = 0.2, 0.3. Dataset is niet heel groot, vandaar een kleinere dropout dan 0.5. De ondergrens van 0.2 gekozen, omdat dit vaak als standaard gehanteerd wordt.
 * Batchsize = 80, 100. In de vorige tune kwam 83 als best eruit. Dit ligt in lijn met de verwachting dat de batchsize verkleind moest worden.
 
-![](Tentamen%20ML22/FF9D3FA6-4E67-44AE-A3BC-8023433C8383.png)
+<figure>
+  <p align = "center">
+    <img src="img/Hparams_V2.0.png" style="width:100%">
+    <figcaption align="center">
+      <b> Fig 8. Plot 2e hypertune.</b>
+    </figcaption>
+  </p>
+</figure>
 
 
-![](Tentamen%20ML22/4D794CAA-4CF7-4140-8B8A-113CCE4ED94B.png)
+<figure>
+  <p align = "center">
+    <img src="img/Results_V2.0.png" style="width:100%">
+    <figcaption align="center">
+      <b> Fig 9. Resultaten parameters 2e hypertune.</b>
+    </figcaption>
+  </p>
+</figure>
 
 Bovenstaand de resultaten van de Hypertune 2.0. Hieruit blijkt dat de *hidden_size* weer dichtbij het voorgaande experiment ligt, ditmaal 233. De optimale range lijkt in *hidden_size* gevonden. Opvallend is dat er een layer is bijgevoegd, van 2 naar 3. De dropout ligt dichtbij de 2. Het is het proberen waard om vanaf 0.1 tot 0.21 te testen.
 
-![](Tentamen%20ML22/6E928F5D-258F-4C2F-A117-1926A62AB7DF.png)
+<figure>
+  <p align = "center">
+    <img src="img/Loss_V2.0.png" style="width:100%">
+    <figcaption align="center">
+      <b> Fig 10. Resultaten loss 2e hypertune.</b>
+    </figcaption>
+  </p>
+</figure>
 
 De *loss* voor de train en test-set zien er goed uit en geven wederom geen teken van overfitting, ondanks het toevoegen van een extra layer.
 
@@ -315,13 +381,34 @@ Dit is de laatste setup die getest wordt. De searchspace wordt nog verder verkle
 * Dropout = 0.1, 0.21. Zoals aangegeven in voorgaande hypertune lag dropout aan de onderkant van de range 0.2 tot 0.3, vandaar de aanpassing naar 0.1 tot 0.21.
 * Batchsize = 85, 95. In de vorige tunes kwamen 83 (V1.0) en 93 (V2.0) naar voren als beste *batchsize*.
 
-![](Tentamen%20ML22/0C80751A-B0DE-4B9F-ADA1-ECAE26EFBAB5.png)
+<figure>
+  <p align = "center">
+    <img src="img/Hparams_V3.0.png" style="width:100%">
+    <figcaption align="center">
+      <b> Fig 11. Plot 3e hypertune.</b>
+    </figcaption>
+  </p>
+</figure>
 
-![](Tentamen%20ML22/186C7C3A-30B1-4053-AF3D-EBA8C822A007.png)
+<figure>
+  <p align = "center">
+    <img src="img/Results_V3.0.png" style="width:100%">
+    <figcaption align="center">
+      <b> Fig 12. Resultaten parameters 3e hypertune.</b>
+    </figcaption>
+  </p>
+</figure>
 
 Een lagere dropout leidt niet tot betere resultaten. Het voorgaande experiment was succesvoller dan deze. Toch komt deze test tot een accuracy van 95%.
 
-![](Tentamen%20ML22/CF54030B-4892-49CC-83B7-4ADD79B58581.png)
+<figure>
+  <p align = "center">
+    <img src="img/Loss_V2.0.png" style="width:100%">
+    <figcaption align="center">
+      <b> Fig 13. Resultaten loss 3e hypertune.</b>
+    </figcaption>
+  </p>
+</figure>
 
 *Loss* in train- en testset geven geen teken van grilligheid of overfitting.
 
