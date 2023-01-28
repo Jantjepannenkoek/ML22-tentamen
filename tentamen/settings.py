@@ -65,6 +65,7 @@ class LinearSearchSpace(BaseSearchSpace):
 #Implementatie GRU SearchSpace Config
 class gru_modelSearchSpace(BaseSearchSpace):
     hidden_size: Union[int, SAMPLE_INT] = tune.randint(220, 256)
-    num_layers: Union[int, SAMPLE_INT] = tune.randint(2)
+    num_layers: Union[int, SAMPLE_INT] = tune.randint(2, 4)
     dropout: Union[float, SAMPLE_FLOAT] = tune.uniform(0.2, 0.3)
     batchsize: Union[int, SAMPLE_INT] = tune.randint(80, 100)
+
