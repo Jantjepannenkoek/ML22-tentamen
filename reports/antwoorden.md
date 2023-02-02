@@ -333,10 +333,10 @@ Hieronder de resultaten van de eerste hypertune.
 
 
 
-Een accuracy van 94% is nog niet de 96% van de handmatige tuning, dus er is nog ruimte voor verbetering. Interessant uit deze uitkomst is dat de *hidden_size* (238) groter is dan de handmatige tuning en het aantal *layers* kleiner (2). De *loss* ziet er goed uit voor de test- en trainset en vertoont geen tekenen van overfitting. Kortom een goede basis om een gerichter experiment uit te voeren. Met name de *batchsize* is erg groot (80, 600) voor deze dataset. *Batchsize* wordt verkleind en het aantal epochs wordt opgeschaald naar 50.
+Een accuracy van 94% is nog niet de 96% van de handmatige tuning, dus er is nog ruimte voor verbetering. Interessant uit deze uitkomst is dat de *hidden_size* (238) groter is dan de handmatige tuning en het aantal *layers* kleiner (2). De *loss* ziet er goed uit voor de test- en trainset en vertoont geen tekenen van overfitting. Kortom een goede basis om een gerichter experiment uit te voeren. Met name de *batchsize* is erg groot (80, 600) voor deze dataset. *Batchsize* wordt verkleind en het aantal epochs wordt opgeschaald naar 50. op deze manier kunnen we beter omgaan met de beschikbare rekenkracht.
 
 ### Hypertune V2.0
-In navolging op het voorgaande experiment zijn de ranges in de *searchspace* verkleind en is er voortborduurt op het beste experiment in Hypertune 1.0. Ook is de *batchsize* verkleind in verband met de grootte van de dataset en stelt de traanloop in staat om meer epochs te trainen.
+In navolging op het voorgaande experiment zijn de ranges in de *searchspace* verkleind en is er voortborduurt op het beste experiment in Hypertune 1.0. Ook is de *batchsize* verkleind in verband met de grootte van de dataset en stelt de trainloop in staat om meer epochs te trainen.
 
 * Hidden_size = 220, 256. Dit is nog een relatief groot zoekgebied. In eerdere testen bleek tussen deze range de hoogste accuracy behaald werd.
 * Num_layers = 2, 4. Minimaal 2 lagen en maximaal 4. Bij teveel lagen kan overfitting voorkomen.
